@@ -21,12 +21,14 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background-color:var(--bg);background-image:var(--bgimg);background-repeat:no-repeat;background-attachment:fixed;min-height:100vh;color:var(--ink);font:16px/1.5 "Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
 .hr{display:flex;gap:8px;align-items:center}
 header{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,48px)}
+header{flex-wrap:wrap;gap:10px}
+.brand .logoimg{flex:none}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
 .logoimg{display:block;border-radius:14px;background:var(--logochip)}
 .brand .logoimg{width:52px;height:52px;padding:3px}
 .logo{font-weight:800;font-size:24px;letter-spacing:-.02em;line-height:1.1}
 .tag{font-size:13px;color:var(--mute);line-height:1.2}
-@media (max-width:640px){.tag{display:none}}
+@media (max-width:640px){.tag{display:none}.hr{width:100%;justify-content:space-between}.brand .logoimg{width:44px;height:44px}.logo{font-size:22px}}
 footer{text-align:center;padding:12px 16px 40px;color:var(--mute);font-size:14px}
 footer .logoimg{width:180px;height:auto;margin:0 auto 10px;padding:8px}
 button{font:inherit;cursor:pointer}
@@ -190,9 +192,8 @@ try{const sv=localStorage.getItem("lang");if(sv==="en"||sv==="el")lang=sv}catch(
 function T(k,a){let v=I18N[lang][k];return a?v.replace(/\{(\w+)\}/g,(m,x)=>a[x]):v}
 function isDark(){const t=document.documentElement.dataset.theme;return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches}
 function updateThemeBtn(){const d=isDark();$("theme").textContent=(d?"☀ ":"☾ ")+T(d?"themeLight":"themeDark");$("theme").setAttribute("aria-label",T(d?"themeAriaLight":"themeAriaDark"))}
-try{const th=localStorage.getItem("theme");if(th==="light"||th==="dark")document.documentElement.dataset.theme=th}catch(e){}
-if(!document.documentElement.dataset.theme)document.documentElement.dataset.theme="light";
-$("theme").onclick=()=>{const n=isDark()?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}updateThemeBtn()};
+document.documentElement.dataset.theme="light";
+$("theme").onclick=()=>{const n=isDark()?"light":"dark";document.documentElement.dataset.theme=n;updateThemeBtn()};
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",updateThemeBtn);
 function applyLang(){
   document.documentElement.lang=lang;document.title=T("title");$("metaDesc").setAttribute("content",T("meta"));
