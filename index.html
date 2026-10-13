@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Imprint Flasks – your image, printed on a flask</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f7ff;--bgimg:radial-gradient(900px 520px at 90% -8%,#ffe3a8 0,transparent 62%),radial-gradient(820px 520px at -8% 6%,#b9defe 0,transparent 62%);--panel:#fff;--ink:#0f1f26;--mute:#566b75;--line:#cfdbe0;--acc:#2446ff;--acc-ink:#fff;--stage:linear-gradient(160deg,#bfe1ff 0%,#e6f1ff 55%,#fff0d2 100%);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d171c;--bgimg:none;--panel:#142229;--ink:#e8f0f3;--mute:#8fa5af;--line:#26393f;--acc:#6f8bff;--acc-ink:#0d171c;--stage:linear-gradient(160deg,#1f3a48,#122028)}}
+:root[data-theme="dark"]{--bg:#0d171c;--bgimg:none;--panel:#142229;--ink:#e8f0f3;--mute:#8fa5af;--line:#26393f;--acc:#6f8bff;--acc-ink:#0d171c;--stage:linear-gradient(160deg,#1f3a48,#122028)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background-color:var(--bg);background-image:var(--bgimg);background-repeat:no-repeat;background-attachment:fixed;min-height:100vh;color:var(--ink);font:16px/1.5 "Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
+.hr{display:flex;gap:8px;align-items:center}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,48px)}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.02em}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.cartbtn{background:none;border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:600}
+main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);padding:8px clamp(16px,4vw,48px) 48px;max-width:1200px;margin:0 auto;align-items:start}
+@media (max-width:820px){main{grid-template-columns:1fr}}
+.stage{background:var(--stage);border-radius:28px;padding:24px;display:flex;justify-content:center}
+.stagewrap{position:sticky;top:12px}
+@media (max-width:820px){.stagewrap{position:static}}
+.stage{position:static}
+.stage canvas{width:min(100%,300px);aspect-ratio:320/520;height:auto;max-height:70vh;touch-action:pan-y;cursor:grab;border-radius:16px}
+.stage canvas:active{cursor:grabbing}
+.rot{display:flex;gap:8px;align-items:center;margin-top:12px}
+.pill{background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:600}
+.pill[aria-pressed=true]{border-color:var(--acc);background:var(--acc);color:var(--acc-ink)}
+.seg{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+h1{font-size:clamp(34px,5.5vw,60px);line-height:1;letter-spacing:-.035em;margin:8px 0 12px;font-weight:800}
+.lead{color:var(--mute);margin:0 0 24px;max-width:46ch}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px}
+.step h2{font-size:17px;margin:0 0 10px}
+.drop{display:block;border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--mute);cursor:pointer}
+.drop:hover,.drop.over{border-color:var(--acc);color:var(--ink)}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.drop:focus-within{outline:3px solid var(--acc);outline-offset:2px}
+.msg{font-size:14px;margin:8px 0 0;min-height:1.2em}
+.msg.warn{color:#b45309}.msg.err{color:#c62828}
+@media (prefers-color-scheme:dark){.msg.warn{color:#f5b45c}.msg.err{color:#ff8a80}}
+.sliders{display:grid;gap:8px;margin-top:14px}
+.sliders[hidden]{display:none}
+.sliders label{display:grid;grid-template-columns:120px 1fr;align-items:center;font-size:14px;color:var(--mute)}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.linkbtn{background:none;border:0;color:var(--acc);padding:4px 0;font-weight:600;justify-self:start}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.sw{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);padding:0;position:relative}
+.sw[aria-pressed=true]{outline:3px solid var(--acc);outline-offset:2px}
+.size{border:1.5px solid var(--line);background:none;color:var(--ink);border-radius:12px;padding:10px 16px;text-align:left}
+.size[aria-pressed=true]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.size small{display:block;color:var(--mute)}
+.buy{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.price{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.price small{font-size:14px;font-weight:400;color:var(--mute);margin-left:6px}
+.primary{background:var(--acc);color:var(--acc-ink);border:0;border-radius:999px;padding:14px 28px;font-weight:700;font-size:17px}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.facts{display:flex;gap:18px;flex-wrap:wrap;color:var(--mute);font-size:14px;margin:18px 0 0;padding:0;list-style:none}
+aside{position:fixed;inset:0 0 0 auto;width:min(400px,100%);background:var(--panel);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .25s;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;z-index:10;visibility:hidden}
+aside.open{transform:none;visibility:visible}
+aside h2{margin:0 0 12px}
+.items{flex:1;overflow:auto}
+.item{display:grid;grid-template-columns:56px 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center;font-size:14px}
+.item .th{width:56px;height:56px;border-radius:10px;background-size:cover;background-position:center;border:1px solid var(--line)}
+.item button{background:none;border:0;color:var(--mute);text-decoration:underline}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:20px;margin:14px 0}
+.close{align-self:flex-end;background:none;border:0;color:var(--ink);font-size:15px;font-weight:600}
+@media (prefers-reduced-motion:reduce){aside{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Imprint Flasks</div>
+  <div class="hr"><button class="pill" id="theme"></button><button class="pill" id="lang">EN</button><button class="cartbtn" id="openCart"><span data-i18n="cart"></span> (<span id="count">0</span>)</button></div>
+</header>
+
+<main>
+  <div class="stagewrap">
+  <div class="stage">
+    <canvas id="cv" width="320" height="520" tabindex="0" role="img" data-i18n-aria="canvasLabel"></canvas>
+  </div>
+  <div class="rot">
+    <button class="pill" id="spin" aria-pressed="false" data-i18n="spin"></button>
+    <button class="pill" id="front" data-i18n="front"></button>
+    <button class="pill" id="back" data-i18n="back"></button>
+    <input type="range" id="rot" min="0" max="360" value="0" data-i18n-aria="rotLabel">
+  </div>
+  <p class="msg" style="text-align:center;color:var(--mute)" data-i18n="dragHint"></p>
+</div>
+
+  <div>
+    <h1 data-i18n="h1"></h1>
+    <p class="lead" data-i18n="lead"></p>
+
+    <section class="step">
+      <h2 data-i18n="st1"></h2>
+      <div class="seg" role="group" data-i18n-aria="layout">
+        <button class="pill" id="mWrap" aria-pressed="true" data-i18n="mWrap"></button>
+        <button class="pill" id="mCenter" aria-pressed="false" data-i18n="mCenter"></button>
+      </div>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
+        <span id="dropText"></span>
+      </label>
+      <p class="msg" id="msg" role="status"></p>
+      <div class="sliders" id="sliders" hidden>
+        <label><span data-i18n="size"></span><input type="range" id="sc" min="100" max="250" value="100" data-i18n-aria="szLabel"></label>
+        <label><span data-i18n="px"></span><input type="range" id="px" min="-100" max="100" value="0" data-i18n-aria="pxLabel"></label>
+        <label><span data-i18n="py"></span><input type="range" id="py" min="-150" max="150" value="0" data-i18n-aria="pyLabel"></label>
+        <button class="linkbtn" id="reset" data-i18n="reset"></button>
+        <button class="linkbtn" id="remove" data-i18n="remove"></button>
+      </div>
+    </section>
+
+    <section class="step">
+      <h2 data-i18n="st2"></h2>
+      <div class="opts" id="colors"></div>
+      <p class="msg" id="colorName" style="color:var(--mute)"></p>
+    </section>
+
+    <section class="step">
+      <h2 data-i18n="st3"></h2>
+      <div class="opts" id="sizes"></div>
+    </section>
+
+    <div class="buy">
+      <div class="price"><span id="price">$34</span><small data-i18n="incl"></small></div>
+      <button class="primary" id="add" disabled data-i18n="add"></button>
+    </div>
+    <p class="msg" id="addHint" style="color:var(--mute)" data-i18n="hint"></p>
+    <ul class="facts"><li data-i18n="f1"></li><li data-i18n="f2"></li><li data-i18n="f3"></li></ul>
+  </div>
+</main>
+
+<aside id="cart" data-i18n-aria="cartLabel" aria-hidden="true">
+  <button class="close" id="closeCart" data-i18n="close"></button>
+  <h2 data-i18n="cartTitle"></h2>
+  <div class="items" id="items"></div>
+  <div class="total"><span data-i18n="total"></span><span id="total">$0</span></div>
+  <button class="primary" id="checkout" disabled data-i18n="checkout"></button>
+  <p class="msg" id="coMsg"></p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const COLORS=[{n:"Glacier",c:"#f4f7f8",cap:"#2b3a41"},{n:"Midnight",c:"#18262e",cap:"#0b1317"},{n:"Sage",c:"#9fb8a6",cap:"#3c5546"}];
+const SIZES=[{n:"500 ml",p:29,k:"Fits a bag pocket",H:17},{n:"750 ml",p:34,k:"All-day size",H:22}];
+const $=id=>document.getElementById(id);
+let st={color:0,size:1,img:null,imgEl:null,sc:100,px:0,py:0,thumb:null,mode:"wrap"};
+let cart=[];
+const I18N={
+el:{themeDark:"Σκούρο",themeLight:"Φωτεινό",themeAriaDark:"Αλλαγή σε σκούρο θέμα",themeAriaLight:"Αλλαγή σε φωτεινό θέμα",title:"Imprint Flasks – η εικόνα σου τυπωμένη σε παγούρι",cart:"Καλάθι",canvasLabel:"Τρισδιάστατη προεπισκόπηση παγουριού. Σύρε ή χρησιμοποίησε τα βέλη αριστερά και δεξιά για να το περιστρέψεις.",spin:"Περιστροφή",front:"Μπροστά",back:"Πίσω",rotLabel:"Περιστροφή παγουριού",dragHint:"Σύρε το παγούρι για να το γυρίσεις 360°",
+h1:"Βάλε τη φωτογραφία σου σε ένα παγούρι.",lead:"Ανέβασε μια φωτογραφία, ένα σχέδιο ή ένα λογότυπο, γύρνα το παγούρι για να δεις την εικόνα να τυλίγεται γύρω του, και το στέλνουμε σε περίπου μία εβδομάδα.",
+st1:"1. Ανέβασε την εικόνα σου",st2:"2. Διάλεξε χρώμα",st3:"3. Διάλεξε μέγεθος",layout:"Τρόπος κάλυψης",mWrap:"Γέμισμα όλου του παγουριού",mFront:"Επανάληψη εικόνας",
+dropEmpty:"Επίλεξε μια εικόνα ή σύρε την εδώ<br><small>PNG, JPG ή WebP, έως 8 MB</small>",dropFull:"Αντικατάσταση εικόνας<br><small>Ή σύρε εδώ μια νέα</small>",
+size:"Μέγεθος",px:"Αριστερά / δεξιά",py:"Πάνω / κάτω",szLabel:"Μέγεθος εικόνας",pxLabel:"Μετακίνηση εικόνας αριστερά ή δεξιά",pyLabel:"Μετακίνηση εικόνας πάνω ή κάτω",reset:"Επαναφορά θέσης",remove:"Αφαίρεση εικόνας",
+errType:"Αυτός ο τύπος αρχείου δεν υποστηρίζεται. Χρησιμοποίησε PNG, JPG ή WebP.",errSize:"Η εικόνα ξεπερνά τα 8 MB. Επίλεξε μικρότερο αρχείο.",warn:"Η εικόνα είναι {w}×{h} px. Μπορεί να εκτυπωθεί θολή· για καλύτερο αποτέλεσμα χρειάζονται τουλάχιστον {n} px πλάτος.",ok:"Καθαρή εικόνα: {w}×{h} px.",errRead:"Δεν μπορέσαμε να διαβάσουμε αυτή την εικόνα. Δοκίμασε άλλο αρχείο.",errRead2:"Δεν μπορέσαμε να διαβάσουμε αυτό το αρχείο. Δοκίμασε ξανά.",
+c0:"Πάγος",c1:"Μεσάνυχτα",c2:"Φασκόμηλο",c3:"Κοβάλτιο",sk0:"Χωράει στην τσέπη της τσάντας",sk1:"Για όλη τη μέρα",
+incl:"η εκτύπωση περιλαμβάνεται",add:"Προσθήκη στο καλάθι",hint:"Ανέβασε μια εικόνα για να προσθέσεις το παγούρι στο καλάθι.",f1:"Ανοξείδωτο με μόνωση: 12 ώρες ζεστό, 24 ώρες κρύο",f2:"Με καπάκι και ανοξείδωτο καλαμάκι",f3:"Αποστολή σε 5–7 ημέρες",
+cartLabel:"Καλάθι",close:"Κλείσιμο",cartTitle:"Το καλάθι σου",total:"Σύνολο",checkout:"Ολοκλήρωση αγοράς",empty:"Το καλάθι σου είναι άδειο. Σχεδίασε ένα παγούρι και πρόσθεσέ το εδώ.",item:"Παγούρι με εκτύπωση",rm:"Αφαίρεση",coMsg:"Οι πληρωμές δεν είναι συνδεδεμένες σε αυτή την επίδειξη. Σύνδεσε το Stripe ή το Shopify για να δέχεσαι παραγγελίες.",wrapName:"Γέμισμα 360°",frontName:"Επανάληψη 360°",guideWrap:"Η εικόνα σου καλύπτει όλο το παγούρι",guideFront:"Η εικόνα σου εκτυπώνεται εδώ",guideCenter:"Η εικόνα σου εδώ",mCenter:"Φωτογραφία στο κέντρο",centerName:"Κεντρική φωτογραφία"},
+en:{themeDark:"Dark",themeLight:"Light",themeAriaDark:"Switch to dark mode",themeAriaLight:"Switch to light mode",title:"Imprint Flasks – your image, printed on a flask",cart:"Cart",canvasLabel:"3D flask preview. Drag or use left and right arrow keys to rotate.",spin:"Spin",front:"Front",back:"Back",rotLabel:"Rotate flask",dragHint:"Drag the flask to turn it 360°",
+h1:"Put your picture on a flask.",lead:"Upload a photo, drawing or logo, spin the flask to see it wrapped all the way round, and we ship it in about a week.",
+st1:"1. Upload your image",st2:"2. Pick a colour",st3:"3. Pick a size",layout:"Image fit",mWrap:"Fill whole flask",mFront:"Repeat image",
+dropEmpty:"Choose an image or drop it here<br><small>PNG, JPG or WebP, up to 8 MB</small>",dropFull:"Replace image<br><small>Or drop a new one here</small>",
+size:"Size",px:"Left / right",py:"Up / down",szLabel:"Image size",pxLabel:"Move image left or right",pyLabel:"Move image up or down",reset:"Reset position",remove:"Remove image",
+errType:"That file type isn't supported. Use PNG, JPG or WebP.",errSize:"That image is over 8 MB. Choose a smaller file.",warn:"Image is {w}×{h}px. It may print soft; {n} px wide or more looks best.",ok:"Looks sharp: {w}×{h}px.",errRead:"We couldn't read that image. Try another file.",errRead2:"We couldn't read that file. Try again.",
+c0:"Glacier",c1:"Midnight",c2:"Sage",c3:"Cobalt",sk0:"Fits a bag pocket",sk1:"All-day size",
+incl:"printing included",add:"Add to cart",hint:"Upload an image to add your flask to the cart.",f1:"Insulated steel, 12 h hot / 24 h cold",f2:"Lid and stainless straw included",f3:"Ships in 5–7 days",
+cartLabel:"Cart",close:"Close",cartTitle:"Your cart",total:"Total",checkout:"Check out",empty:"Your cart is empty. Design a flask and add it here.",item:"Custom flask",rm:"Remove",coMsg:"Payments aren't connected in this demo. Connect Stripe or Shopify to take orders.",wrapName:"360° fill",frontName:"360° repeat",guideWrap:"Your image covers the whole flask",guideFront:"Your image prints here",guideCenter:"Your image here",mCenter:"Centered photo",centerName:"Centered photo"}};
+let lang="el",lastMsg=null,coOn=false;
+try{const sv=localStorage.getItem("lang");if(sv==="en"||sv==="el")lang=sv}catch(e){}
+function T(k,a){let v=I18N[lang][k];return a?v.replace(/\{(\w+)\}/g,(m,x)=>a[x]):v}
+function isDark(){const t=document.documentElement.dataset.theme;return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches}
+function updateThemeBtn(){const d=isDark();$("theme").textContent=(d?"☀ ":"☾ ")+T(d?"themeLight":"themeDark");$("theme").setAttribute("aria-label",T(d?"themeAriaLight":"themeAriaDark"))}
+try{const th=localStorage.getItem("theme");if(th==="light"||th==="dark")document.documentElement.dataset.theme=th}catch(e){}
+if(!document.documentElement.dataset.theme)document.documentElement.dataset.theme="light";
+$("theme").onclick=()=>{const n=isDark()?"light":"dark";document.documentElement.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}updateThemeBtn()};
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",updateThemeBtn);
+function applyLang(){
+  document.documentElement.lang=lang;document.title=T("title");
+  document.querySelectorAll("[data-i18n]").forEach(e=>e.textContent=T(e.dataset.i18n));
+  document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria)));
+  $("lang").textContent=lang==="el"?"EN":"ΕΛ";
+  $("lang").setAttribute("aria-label",lang==="el"?"Switch to English":"Αλλαγή σε ελληνικά");
+  buildOptions();updateThemeBtn();
+  if(lastMsg)setMsg(lastMsg[0],lastMsg[1],lastMsg[2]);
+  $("coMsg").textContent=coOn?T("coMsg"):"";
+  drawCart();update();
+}
+$("lang").onclick=()=>{lang=lang==="el"?"en":"el";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()};
+
+const TAU=Math.PI*2,R=4,TW=2048;
+const cv=$("cv"),tex=document.createElement("canvas");
+const dpr=Math.min(window.devicePixelRatio||1,2);
+let rot=0,spin=false,dirty=true,drag=null,builtSize=-1,renderer,scene,cam,group,mats={},sleeveTex,shadowTex;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function buildOptions(){
+  $("colors").innerHTML="";$("sizes").innerHTML="";
+  COLORS.forEach((o,i)=>{const b=document.createElement("button");b.className="sw";b.style.background=o.c;b.setAttribute("aria-label",T("c"+i));b.onclick=()=>{st.color=i;update()};$("colors").appendChild(b)});
+  SIZES.forEach((o,i)=>{const b=document.createElement("button");b.className="size";b.innerHTML=o.n+" · €"+o.p+"<small>"+T("sk"+i)+"</small>";b.onclick=()=>{st.size=i;update()};$("sizes").appendChild(b)});
+}
+
+function makeEnv(){
+  const c=document.createElement("canvas");c.width=1024;c.height=512;const x=c.getContext("2d");
+  const g=x.createLinearGradient(0,0,0,512);g.addColorStop(0,"#e4edf1");g.addColorStop(.5,"#97a8b0");g.addColorStop(.52,"#52626a");g.addColorStop(1,"#1e2a30");
+  x.fillStyle=g;x.fillRect(0,0,1024,512);
+  [[100,50],[300,70],[512,60],[720,70],[920,50]].forEach(([cx,w])=>{const l=x.createLinearGradient(cx-w,0,cx+w,0);
+    l.addColorStop(0,"rgba(255,255,255,0)");l.addColorStop(.3,"rgba(255,255,255,.95)");l.addColorStop(.7,"rgba(255,255,255,.95)");l.addColorStop(1,"rgba(255,255,255,0)");
+    x.fillStyle=l;x.fillRect(cx-w,70,2*w,320)});
+  const t=new THREE.CanvasTexture(c);t.mapping=THREE.EquirectangularReflectionMapping;t.encoding=THREE.sRGBEncoding;
+  const p=new THREE.PMREMGenerator(renderer),e=p.fromEquirectangular(t).texture;t.dispose();p.dispose();return e;
+}
+function init(){
+  if(!window.THREE){document.querySelector(".stage").innerHTML='<p style="color:var(--mute)">The 3D preview could not load. Check your connection and reload.</p>';return}
+  renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,preserveDrawingBuffer:true});
+  renderer.setPixelRatio(dpr);renderer.setSize(320,520,false);
+  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  scene=new THREE.Scene();scene.environment=makeEnv();
+  cam=new THREE.PerspectiveCamera(28,320/520,1,300);cam.position.set(0,6,76);cam.lookAt(0,0,0);
+  const d=new THREE.DirectionalLight(0xffffff,.5);d.position.set(-20,30,30);scene.add(d);
+  group=new THREE.Group();scene.add(group);
+  mats.body=new THREE.MeshStandardMaterial({metalness:.4,roughness:.4});
+  mats.cap=new THREE.MeshStandardMaterial({metalness:.05,roughness:.5});
+  mats.boot=new THREE.MeshStandardMaterial({color:0x1b1f22,roughness:.9,metalness:0});
+  mats.lid=new THREE.MeshPhysicalMaterial({color:0xeaf3f7,transparent:true,opacity:.38,roughness:.05,metalness:0,clearcoat:1,envMapIntensity:1.6,depthWrite:false,side:THREE.DoubleSide});
+  mats.straw=new THREE.MeshStandardMaterial({color:0xe3e8ea,metalness:1,roughness:.22});
+  const sc=document.createElement("canvas");sc.width=sc.height=128;const sx=sc.getContext("2d");
+  const rg=sx.createRadialGradient(64,64,6,64,64,64);rg.addColorStop(0,"rgba(0,0,0,.5)");rg.addColorStop(1,"rgba(0,0,0,0)");sx.fillStyle=rg;sx.fillRect(0,0,128,128);
+  shadowTex=new THREE.CanvasTexture(sc);
+}
+function lathe(pts,mat){return new THREE.Mesh(new THREE.LatheGeometry(pts.map(p=>new THREE.Vector2(p[0],p[1])),96),mat)}
+function buildBottle(){
+  while(group.children.length){const o=group.children.pop();if(o.geometry)o.geometry.dispose()}
+  const H=SIZES[st.size].H;builtSize=st.size;group.position.y=-(H+10.5)/2;
+  // straight tumbler body
+  group.add(lathe([[.001,0],[R-.55,0],[R-.3,.12],[R-.12,.4],[R-.03,.8],[R,1.4],[R,H],[R-.25,H+.12],[R-.7,H+.12]],mats.body));
+  // clear lid, slider tab and metal straw
+  group.add(new THREE.Mesh(new THREE.LatheGeometry([[R+.12,H-.5],[R+.15,H+.2],[R+.1,H+.85],[R-.1,H+1.05],[R-.6,H+1.15],[.001,H+1.15]].map(a=>new THREE.Vector2(a[0],a[1])),96),mats.lid));
+  const tab=new THREE.Mesh(new THREE.BoxGeometry(1.1,.5,1),mats.cap);tab.position.set(-(R+.2),H+.35,0);group.add(tab);
+  const L=11,ang=.33,sx=-.9,sy=H+.1;
+  const straw=new THREE.Mesh(new THREE.CylinderGeometry(.27,.27,L,16),mats.straw);
+  straw.rotation.z=-ang;straw.position.set(sx+Math.sin(ang)*L/2,sy+Math.cos(ang)*L/2,0);group.add(straw);
+  // print sleeve: follows the body from the bottom bevel to the rim, so the image covers everything
+  const y0=.12,Hs=H-y0,r=R+.02;
+  tex.width=TW;tex.height=Math.round(Hs/(TAU*r)*TW);
+  if(sleeveTex)sleeveTex.dispose();
+  sleeveTex=new THREE.CanvasTexture(tex);sleeveTex.encoding=THREE.sRGBEncoding;sleeveTex.minFilter=THREE.LinearFilter;sleeveTex.generateMipmaps=false;
+  sleeveTex.anisotropy=renderer.capabilities.getMaxAnisotropy();
+  const sm=new THREE.MeshPhysicalMaterial({map:sleeveTex,transparent:true,roughness:.3,metalness:0,clearcoat:1,clearcoatRoughness:.12});
+  const sg=new THREE.LatheGeometry([[R-.28,y0],[R-.1,.4],[R-.01,.8],[r,1.4],[r,H]].map(a=>new THREE.Vector2(a[0],a[1])),128);
+  const uv=sg.attributes.uv,ps=sg.attributes.position;
+  for(let i=0;i<uv.count;i++)uv.setY(i,(ps.getY(i)-y0)/Hs);
+  const sl=new THREE.Mesh(sg,sm);sl.rotation.y=Math.PI;group.add(sl);
+  const sh=new THREE.Mesh(new THREE.PlaneGeometry(22,22),new THREE.MeshBasicMaterial({map:shadowTex,transparent:true,depthWrite:false}));
+  sh.rotation.x=-Math.PI/2;sh.position.y=-.03;group.add(sh);
+}
+function lum(h){const n=parseInt(h.slice(1),16);return(.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))/255}
+function buildTex(){
+  if(!renderer)return;
+  if(builtSize!==st.size)buildBottle();
+  const col=COLORS[st.color];mats.body.color.set(col.c);mats.cap.color.set(col.cap);
+  const TH=tex.height,x=tex.getContext("2d");x.clearRect(0,0,TW,TH);
+  const m=st.mode,pw=TW*.42,ph=TH*.84;
+  if(!st.imgEl){
+    const k=lum(col.c)>.55?"#2446ff":"#ffffff",full=m!=="center";
+    const bw=full?TW-28:pw,bh=full?TH-28:ph;
+    x.strokeStyle=k;x.fillStyle=k;x.lineWidth=7;x.setLineDash([30,22]);x.strokeRect((TW-bw)/2,(TH-bh)/2,bw,bh);
+    x.setLineDash([]);x.font=(full?"600 64px":"600 52px")+" system-ui,sans-serif";x.textAlign="center";
+    x.fillText(T(full?"guideWrap":"guideCenter"),TW/2,TH/2);
+  }else if(m==="center"){
+    const im=st.imgEl,s=Math.min(pw/im.width,ph/im.height)*st.sc/100,w=im.width*s,hh=im.height*s;
+    const cx=TW/2+st.px/100*TW/4,cy=TH/2+st.py/100*TH/4;
+    [-TW,0,TW].forEach(o=>x.drawImage(im,cx+o-w/2,cy-hh/2,w,hh));
+  }else{
+    const im=st.imgEl,sc=Math.max(TW/im.width,TH/im.height)*st.sc/100,w=im.width*sc,hh=im.height*sc;
+    const mx=Math.max(0,(hh-TH)/2),dy=Math.max(-mx,Math.min(mx,st.py/100*TH/2));
+    const cx=TW/2+st.px/100*TW/2,cy=TH/2+dy,n2=Math.ceil(TW/w)+2;
+    for(let k=-n2;k<=n2;k++)x.drawImage(im,cx+k*w-w/2,cy-hh/2,w,hh);
+  }
+  sleeveTex.needsUpdate=true;
+}
+function draw(){if(!renderer)return;group.rotation.y=rot;renderer.render(scene,cam)}
+function loop(t){
+  if(spin&&!drag){rot+=.012;dirty=true;$("rot").value=Math.round(((rot%TAU)+TAU)%TAU/TAU*360)}
+  if(dirty){draw();dirty=false}
+  requestAnimationFrame(loop);
+}
+function setRot(r){rot=r;dirty=true;$("rot").value=Math.round(((rot%TAU)+TAU)%TAU/TAU*360)}
+function setSpin(on){spin=on;$("spin").setAttribute("aria-pressed",on)}
+cv.addEventListener("pointerdown",e=>{drag={x:e.clientX};cv.setPointerCapture(e.pointerId)});
+cv.addEventListener("pointermove",e=>{if(!drag)return;const k=320/cv.getBoundingClientRect().width;setRot(rot+(e.clientX-drag.x)*k/61);drag.x=e.clientX});
+["pointerup","pointercancel"].forEach(ev=>cv.addEventListener(ev,()=>{drag=null}));
+cv.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){setRot(rot-.15);e.preventDefault()}if(e.key==="ArrowRight"){setRot(rot+.15);e.preventDefault()}});
+$("rot").oninput=e=>{setSpin(false);setRot(+e.target.value/360*TAU)};
+$("spin").onclick=()=>setSpin(!spin);
+$("front").onclick=()=>{setSpin(false);setRot(0)};
+$("back").onclick=()=>{setSpin(false);setRot(Math.PI)};
+$("mWrap").onclick=()=>{st.mode="wrap";update()};
+$("mCenter").onclick=()=>{st.mode="center";update()};
+
+function update(){
+  const c=COLORS[st.color],has=!!st.img;
+  [...$("colors").children].forEach((b,i)=>b.setAttribute("aria-pressed",i===st.color));
+  [...$("sizes").children].forEach((b,i)=>b.setAttribute("aria-pressed",i===st.size));
+  $("mWrap").setAttribute("aria-pressed",st.mode==="wrap");$("mCenter").setAttribute("aria-pressed",st.mode==="center");
+  const mn=st.mode==="center"?30:100;$("sc").min=mn;if(st.sc<mn){st.sc=mn;$("sc").value=mn}
+  $("colorName").textContent=T("c"+st.color);
+  $("price").textContent="€"+SIZES[st.size].p;
+  $("sliders").hidden=!has;$("add").disabled=!has;$("addHint").style.display=has?"none":"";
+  $("dropText").innerHTML=T(has?"dropFull":"dropEmpty");
+  buildTex();dirty=true;
+}
+const render=update;
+
+// image handling
+function setMsg(k,cls,a){lastMsg=k?[k,cls,a]:null;const m=$("msg");m.textContent=k?T(k,a):"";m.className="msg "+(cls||"")}
+function loadFile(f){
+  if(!f)return;
+  if(!/^image\/(png|jpeg|webp)$/.test(f.type)){setMsg("errType","err");return}
+  if(f.size>8*1024*1024){setMsg("errSize","err");return}
+  const r=new FileReader();
+  r.onload=()=>{
+    const im=new Image();
+    im.onload=()=>{
+      st.img=r.result;st.imgEl=im;st.sc=100;st.px=0;st.py=0;
+      $("sc").value=100;$("px").value=0;$("py").value=0;
+      if(im.width<(st.mode==="wrap"?1400:700))setMsg("warn","warn",{w:im.width,h:im.height,n:st.mode==="wrap"?1400:700});
+      else setMsg("ok","",{w:im.width,h:im.height});
+      render();
+    };
+    im.onerror=()=>setMsg("errRead","err");
+    im.src=r.result;
+  };
+  r.onerror=()=>setMsg("errRead2","err");
+  r.readAsDataURL(f);
+}
+$("file").onchange=e=>{loadFile(e.target.files[0]);e.target.value=""};
+const drop=$("drop");
+["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("over")}));
+["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("over")}));
+drop.addEventListener("drop",e=>loadFile(e.dataTransfer.files[0]));
+[["sc","sc"],["px","px"],["py","py"]].forEach(([id,k])=>$(id).oninput=e=>{st[k]=+e.target.value;render()});
+$("reset").onclick=()=>{st.sc=100;st.px=0;st.py=0;$("sc").value=100;$("px").value=0;$("py").value=0;render()};
+$("remove").onclick=()=>{st.img=null;st.imgEl=null;setMsg(null);render()};
+
+// cart
+function drawCart(){
+  $("count").textContent=cart.length;
+  const box=$("items");box.innerHTML="";
+  if(!cart.length)box.innerHTML='<p style="color:var(--mute)">'+T("empty")+'</p>';
+  cart.forEach((it,i)=>{
+    const d=document.createElement("div");d.className="item";
+    d.innerHTML=`<div class="th" style="background-image:url(${it.thumb})"></div><div>${T("item")}<br><span style="color:var(--mute)">${T("c"+it.ci)} · ${SIZES[it.si].n} · ${T({wrap:"wrapName",front:"frontName",center:"centerName"}[it.mode])}</span></div><div>€${it.price}<br></div>`;
+    const rm=document.createElement("button");rm.textContent=T("rm");rm.onclick=()=>{cart.splice(i,1);drawCart()};
+    d.lastChild.appendChild(rm);box.appendChild(d);
+  });
+  $("total").textContent="€"+cart.reduce((a,b)=>a+b.price,0);
+  $("checkout").disabled=!cart.length;
+}
+function toggleCart(o){const a=$("cart");a.classList.toggle("open",o);a.setAttribute("aria-hidden",!o);if(o)$("closeCart").focus();else $("openCart").focus()}
+$("openCart").onclick=()=>toggleCart(true);
+$("closeCart").onclick=()=>toggleCart(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")toggleCart(false)});
+$("add").onclick=()=>{
+  draw();const t=document.createElement("canvas");t.width=t.height=112;
+  const q=t.getContext("2d");q.fillStyle="#dce6ea";q.fillRect(0,0,112,112);q.drawImage(cv,60*dpr,160*dpr,200*dpr,200*dpr,0,0,112,112);
+  cart.push({ci:st.color,si:st.size,mode:st.mode,price:SIZES[st.size].p,thumb:t.toDataURL("image/jpeg",.75)});
+  coOn=false;$("coMsg").textContent="";drawCart();toggleCart(true);
+};
+$("checkout").onclick=()=>{coOn=true;$("coMsg").textContent=T("coMsg")};
+
+init();applyLang();requestAnimationFrame(loop);if(!reduce)setSpin(true);
+</script>
+</body>
+</html>
